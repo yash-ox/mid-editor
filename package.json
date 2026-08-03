@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
+    "@prisma/client": "^7.9.1",
     "@shadcn/react": "^0.2.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -19,6 +20,7 @@
     "input-otp": "^1.4.2",
     "lucide-react": "^1.28.0",
     "next": "16.2.12",
+    "prisma": "^7.9.1",
     "react": "19.2.4",
     "react-day-picker": "^10.0.1",
     "react-dom": "19.2.4",
@@ -38,5 +40,11 @@
     "eslint-config-next": "16.2.12",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "allowScripts": {
+    "@prisma/engines@7.9.1": true,
+    "prisma@7.9.1": true,
+    "sharp@0.34.5": true,
+    "unrs-resolver@1.12.2": true
   }
 }
