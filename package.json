@@ -11,7 +11,7 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.3",
     "@base-ui/react": "^1.6.0",
-    "@prisma/client": "^7.9.1",
+    "@prisma/client": "^6.19.3",
     "@shadcn/react": "^0.2.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -22,10 +22,11 @@
     "lucide-react": "^1.28.0",
     "next": "16.2.12",
     "next-auth": "^5.0.0-beta.32",
-    "prisma": "^7.9.1",
+    "prisma": "^6.19.3",
     "react": "19.2.4",
     "react-day-picker": "^10.0.1",
     "react-dom": "19.2.4",
+    "react-icons": "^5.7.0",
     "react-resizable-panels": "^4.12.2",
     "recharts": "^3.8.0",
     "shadcn": "^4.16.1",
@@ -44,9 +45,10 @@
     "typescript": "^5"
   },
   "allowScripts": {
-    "@prisma/engines@7.9.1": true,
-    "prisma@7.9.1": true,
     "sharp@0.34.5": true,
-    "unrs-resolver@1.12.2": true
+    "unrs-resolver@1.12.2": true,
+    "prisma@6.19.3": true,
+    "@prisma/engines@6.19.3": true,
+    "@prisma/client@6.19.3": true
   }
 }
