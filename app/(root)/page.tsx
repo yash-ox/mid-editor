@@ -12,19 +12,19 @@ export default function Home() {
           alt="Hero-Section"
           height={600}
           width={400}
-          className="h-auto"
+          className="w-100"
         />
 
         <h1 className=" z-20 text-6xl mt-5 font-extrabold text-center bg-clip-text text-transparent bg-linear-to-r from-rose-500 via-red-500 to-pink-500 dark:from-rose-400 dark:via-red-400 dark:to-pink-400 tracking-tight leading-[1.3] ">
-          Mid Code With with Intelligence
+          Mid Code W hope n prayers
         </h1>
       </div>
 
       <p className="mt-2 text-lg text-center text-gray-600 dark:text-gray-400 px-5 py-10 max-w-2xl">
-        MidCode Editor is a powerful and intelligent code editor that enhances
-        your coding experience with advanced features and seamless integration.
-        It is designed to help you write, debug, and optimize your code
-        efficiently.
+        Dis editer that has a name dats MidEditer it name iz mid editer cuz its
+        mid, it aint like a editer like a vsCode so yea, its a midEditer. Me
+        made dis cuz i wan a job n me throw dis editer in ma resume n hope da
+        interviewer like dis editer n giv me a job.
       </p>
       <Link href={"/dashboard"}>
         <Button variant={"brand"} className="mb-4" size={"lg"}>

@@ -10,6 +10,7 @@ function SignIn() {
         alt="login-img"
         height={300}
         width={300}
+        loading="eager"
         className="m-6 object-cover"
       />
       <SignInFormClient />
