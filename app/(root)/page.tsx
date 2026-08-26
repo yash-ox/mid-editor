@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
 export default function Home() {
   return (
     <div className=" z-20 flex flex-col items-center justify-start min-h-screen py-2 mt-10">
@@ -16,7 +17,7 @@ export default function Home() {
         />
 
         <h1 className=" z-20 text-6xl mt-5 font-extrabold text-center bg-clip-text text-transparent bg-linear-to-r from-rose-500 via-red-500 to-pink-500 dark:from-rose-400 dark:via-red-400 dark:to-pink-400 tracking-tight leading-[1.3] ">
-          Mid Code W hope n prayers
+          Mid Editur
         </h1>
       </div>
 
@@ -27,7 +28,7 @@ export default function Home() {
         interviewer like dis editer n giv me a job.
       </p>
       <Link href={"/dashboard"}>
-        <Button variant={"brand"} className="mb-4" size={"lg"}>
+        <Button variant={"brand"} className="mb-4 bg-gray-800" size={"lg"}>
           Get Started
           <ArrowUpRight className="w-3.5 h-3.5" />
         </Button>

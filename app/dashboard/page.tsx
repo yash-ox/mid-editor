@@ -1,4 +1,9 @@
-import { getAllPlaygroundForUser } from "@/modules/dashboard/actions";
+import {
+  deletePlaygroundById,
+  duplicateProjectById,
+  getAllPlaygroundForUser,
+  updateProjectById,
+} from "@/modules/dashboard/actions";
 import AddNewButton from "@/modules/dashboard/components/add-new";
 import AddRepo from "@/modules/dashboard/components/add-repo";
 import EmptyState from "@/modules/dashboard/components/empty-state";
@@ -21,10 +26,14 @@ const Page = async () => {
             <EmptyState />
           ) : (
             <ProjectTable
-              project={playgrounds || []}
-              onDeleteProject={() => {}}
-              onUpdateProject={() => {}}
-              onDuplicateProject={() => {}}
+              projects={
+                (playgrounds || []) as React.ComponentProps<
+                  typeof ProjectTable
+                >["projects"]
+              }
+              onDeleteProject={deletePlaygroundById}
+              onUpdateProject={updateProjectById}
+              onDuplicateProject={duplicateProjectById}
             />
           )}
         </div>

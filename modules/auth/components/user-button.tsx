@@ -30,7 +30,7 @@ const UserButton = () => {
         </div>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="mr-4">
+      <DropdownMenuContent className="mr-4 w-auto">
         <DropdownMenuItem>
           <span>{user?.email}</span>
         </DropdownMenuItem>

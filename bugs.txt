@@ -1,0 +1,29 @@
+{ PLAYGROUND }
+
+after installing dependencies the downloaded dependencies should register in package.json
+
+
+{ DASHBOARD }
+
+add svg / logos
+implement ' see all playgound ' func
+
+{ MAIN PAGE } 
+
+add main background mesh design or smthg boxy
+
+
+{  TERMINAL  }
+
+
+
+
+{ fixes }
+
+homepage user mail width fix
+fixed web logo
+removed user redirected to playgound after creating temp func 
+fixed project not registering on sidebar after project creation
+
+termianl resize done
+added go back btn in playground

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -36,6 +36,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 // Define the interface for a single playground item, icon is now a string
 interface PlaygroundData {
@@ -63,6 +64,7 @@ export function DashboardSidebar({
   initialPlaygroundData: PlaygroundData[];
 }) {
   const pathname = usePathname();
+
   const [starredPlaygrounds, setStarredPlaygrounds] = useState(
     initialPlaygroundData.filter((p) => p.starred),
   );
@@ -70,12 +72,25 @@ export function DashboardSidebar({
     initialPlaygroundData,
   );
 
+  useEffect(() => {
+    setStarredPlaygrounds(initialPlaygroundData.filter((p) => p.starred));
+
+    setRecentPlaygrounds(initialPlaygroundData);
+  }, [initialPlaygroundData]);
+
   return (
     <>
       <Sidebar variant="inset" collapsible="icon" className="border border-r">
         <SidebarHeader>
+          <ThemeToggle />
           <div className="flex items-center gap-2 px-4 py-3 justify-center">
-            <Image src={"/logo.svg"} alt="logo" height={60} width={60} />
+            <Image
+              src={"/logo.svg"}
+              alt="logo"
+              height={60}
+              width={60}
+              className="rounded-xl"
+            />
           </div>
         </SidebarHeader>
         <SidebarContent>
