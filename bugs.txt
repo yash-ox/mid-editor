@@ -1,7 +1,6 @@
 { PLAYGROUND }
 
 after installing dependencies the downloaded dependencies should register in package.json
-current session storage in web local storage ( if possible ) ( loading bar irritates )
 
 after opening any file then zooming in / out in ( file explorer ) the ( save / save all ) ui glitches
 
@@ -9,11 +8,9 @@ add file / folder hierarchy
 basic inline suggestions 
 
 
-// IMP -- Only a single WebContainer instance can be booted ( fix this next error )
-          after closing preview and re-opening, the loading screen is stuck at Starting development server 
-          ( Reconnecting to the existing WebContainer session...) - after reloading the window its working but it restarts the while server and starts to reinstall dependencies
+// IMP -- Only a single WebContainer instance can be booted ( fix this next error ) -- not sure if its even there or not 
+          
          
-
 
 { DASHBOARD }
 
@@ -48,3 +45,7 @@ Cannot read properties of undefined (reading 'dimensions') - fixed
 
 minor text selection / img draggable fix
 
+after closing preview and re-opening, the loading screen is stuck at Starting development server - fixed
+( Reconnecting to the existing WebContainer session...) - after reloading the window its working but it restarts the while server and starts to reinstall dependencies - fixed
+
+current session storage in web local storage ( if possible ) ( loading bar irritates ) - no need !!

@@ -36,7 +36,7 @@ const WebContainerPreview = ({
   writeFileSync,
   forceResetup = false,
 }: WebContainerPreviewProps) => {
-  const [previewUrl, setPreviewUrl] = useState<string>("");
+  const [previewUrl, setPreviewUrl] = useState<string>(serverUrl);
   const [loadingState, setLoadingState] = useState({
     transforming: false,
     mounting: false,
@@ -50,7 +50,27 @@ const WebContainerPreview = ({
   const [isSetupComplete, setIsSetupComplete] = useState(false);
   const [isSetupInProgress, setIsSetupInProgress] = useState(false);
 
+  const serverUrlRef = useRef<string | null>(null);
+  const serverProcessRef = useRef<any>(null);
+
   const terminalRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (serverUrl) {
+      setPreviewUrl(serverUrl);
+      setIsSetupComplete(true);
+      setIsSetupInProgress(false);
+
+      setLoadingState((prev) => ({
+        ...prev,
+        transforming: false,
+        mounting: false,
+        installing: false,
+        starting: false,
+        ready: true,
+      }));
+    }
+  }, [serverUrl]);
 
   // Reset setup state when forceResetup changes
   useEffect(() => {
@@ -83,31 +103,28 @@ const WebContainerPreview = ({
             "utf8",
           );
 
-          if (packageJsonExists) {
-            // Files are already mounted, just reconnect to existing server
+          if (packageJsonExists && serverUrl) {
             if (terminalRef.current?.writeToTerminal) {
               terminalRef.current.writeToTerminal(
-                "🔄 Reconnecting to existing WebContainer session...\r\n",
+                `🔄 Reconnected to existing server at ${serverUrl}\r\n`,
               );
             }
 
-            instance.on("server-ready", (port: number, url: string) => {
-              if (terminalRef.current?.writeToTerminal) {
-                terminalRef.current.writeToTerminal(
-                  `🌐 Reconnected to server at ${url}\r\n`,
-                );
-              }
-
-              setPreviewUrl(url);
-              setLoadingState((prev) => ({
-                ...prev,
-                starting: false,
-                ready: true,
-              }));
-            });
+            setPreviewUrl(serverUrl);
 
             setCurrentStep(4);
-            setLoadingState((prev) => ({ ...prev, starting: true }));
+
+            setLoadingState({
+              transforming: false,
+              mounting: false,
+              installing: false,
+              starting: false,
+              ready: true,
+            });
+
+            setIsSetupComplete(true);
+            setIsSetupInProgress(false);
+
             return;
           }
         } catch (error) {}
@@ -202,18 +219,19 @@ const WebContainerPreview = ({
 
         const startProcess = await instance.spawn("npm", ["run", "start"]);
 
-        instance.on("server-ready", (port: number, url: string) => {
-          if (terminalRef.current?.writeToTerminal) {
-            terminalRef.current.writeToTerminal(
-              `🌐 Server ready at ${url}\r\n`,
-            );
-          }
+        serverProcessRef.current = startProcess;
+
+        instance.on("server-ready", (port, url) => {
+          serverUrlRef.current = url;
+
           setPreviewUrl(url);
+
           setLoadingState((prev) => ({
             ...prev,
             starting: false,
             ready: true,
           }));
+
           setIsSetupComplete(true);
           setIsSetupInProgress(false);
         });
@@ -247,7 +265,7 @@ const WebContainerPreview = ({
     }
 
     setupContainer();
-  }, [instance, templateData, isSetupComplete, isSetupInProgress]);
+  }, [instance, templateData, serverUrl, isSetupComplete, isSetupInProgress]);
 
   useEffect(() => {
     return () => {};

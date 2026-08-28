@@ -81,9 +81,7 @@ const MainPlaygroundPage = () => {
     error: containerError,
     instance,
     writeFileSync,
-  } = useWebContainer({
-    templateData,
-  });
+  } = useWebContainer();
 
   const lastSyncedContent = useRef<Map<string, string>>(new Map());
 
