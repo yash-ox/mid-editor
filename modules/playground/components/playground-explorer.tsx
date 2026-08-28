@@ -50,6 +50,41 @@ import { useRouter } from "next/navigation";
 
 type TemplateItem = TemplateFile | TemplateFolder;
 
+const sortFileHierarchy = (items: TemplateItem[]): TemplateItem[] => {
+  return [...items]
+    .sort((a, b) => {
+      const aIsFolder = "folderName" in a;
+      const bIsFolder = "folderName" in b;
+
+      // Folders before files
+      if (aIsFolder && !bIsFolder) return -1;
+      if (!aIsFolder && bIsFolder) return 1;
+
+      // Both folders
+      if (aIsFolder && bIsFolder) {
+        return a.folderName.localeCompare(b.folderName);
+      }
+
+      // Both files
+      if (!aIsFolder && !bIsFolder) {
+        return a.filename.localeCompare(b.filename);
+      }
+
+      return 0;
+    })
+    .map((item) => {
+      // Recursively sort folders
+      if ("folderName" in item) {
+        return {
+          ...item,
+          items: sortFileHierarchy(item.items),
+        };
+      }
+
+      return item;
+    });
+};
+
 interface TemplateFileTreeProps {
   data: TemplateItem;
   onFileSelect?: (file: TemplateFile) => void;
@@ -153,22 +188,24 @@ export function TemplateFileTree({
           <SidebarGroupContent>
             <SidebarMenu>
               {isRootFolder ? (
-                (data as TemplateFolder).items.map((child, index) => (
-                  <TemplateNode
-                    key={index}
-                    item={child}
-                    onFileSelect={onFileSelect}
-                    selectedFile={selectedFile}
-                    level={0}
-                    path=""
-                    onAddFile={onAddFile}
-                    onAddFolder={onAddFolder}
-                    onDeleteFile={onDeleteFile}
-                    onDeleteFolder={onDeleteFolder}
-                    onRenameFile={onRenameFile}
-                    onRenameFolder={onRenameFolder}
-                  />
-                ))
+                sortFileHierarchy((data as TemplateFolder).items).map(
+                  (child, index) => (
+                    <TemplateNode
+                      key={index}
+                      item={child}
+                      onFileSelect={onFileSelect}
+                      selectedFile={selectedFile}
+                      level={0}
+                      path=""
+                      onAddFile={onAddFile}
+                      onAddFolder={onAddFolder}
+                      onDeleteFile={onDeleteFile}
+                      onDeleteFolder={onDeleteFolder}
+                      onRenameFile={onRenameFile}
+                      onRenameFolder={onRenameFolder}
+                    />
+                  ),
+                )
               ) : (
                 <TemplateNode
                   item={data}
@@ -442,7 +479,7 @@ function TemplateNode({
 
           <CollapsibleContent>
             <SidebarMenuSub>
-              {folder.items.map((childItem, index) => (
+              {sortFileHierarchy(folder.items).map((childItem, index) => (
                 <TemplateNode
                   key={index}
                   item={childItem}

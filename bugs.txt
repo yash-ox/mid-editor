@@ -4,7 +4,6 @@ after installing dependencies the downloaded dependencies should register in pac
 
 after opening any file then zooming in / out in ( file explorer ) the ( save / save all ) ui glitches
 
-add file / folder hierarchy
 basic inline suggestions 
 
 
@@ -49,3 +48,5 @@ after closing preview and re-opening, the loading screen is stuck at Starting de
 ( Reconnecting to the existing WebContainer session...) - after reloading the window its working but it restarts the while server and starts to reinstall dependencies - fixed
 
 current session storage in web local storage ( if possible ) ( loading bar irritates ) - no need !!
+
+add file / folder hierarchy - done
