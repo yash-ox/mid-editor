@@ -128,10 +128,6 @@ export function TemplateFileTree({
         className="bg-gray-700 text-amber-50"
         onClick={() => {
           router.push("/dashboard");
-
-          setTimeout(() => {
-            window.location.reload();
-          }, 100);
         }}
       >
         Go back
