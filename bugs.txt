@@ -1,4 +1,4 @@
-{ PLAYGROUND }
+-- { PLAYGROUND }
 
 after installing dependencies the downloaded dependencies should register in package.json
 
@@ -11,7 +11,7 @@ basic inline suggestions
           
          
 
-{ DASHBOARD }
+-- { DASHBOARD }
 
 add svg / logos
 implement ' see all playgound ' func
@@ -19,17 +19,18 @@ open github repo
 
 copy url icon fix
 
-{ MAIN PAGE } 
 
-add main background mesh design or smthg boxy -- // todo 28 
-
-
-{  TERMINAL  }
+-- { MAIN PAGE } 
 
 
 
 
-{ fixes }
+-- {  TERMINAL  }
+
+
+
+
+-- { fixes }
 
 homepage user mail width fix
 fixed web logo
@@ -50,3 +51,4 @@ after closing preview and re-opening, the loading screen is stuck at Starting de
 current session storage in web local storage ( if possible ) ( loading bar irritates ) - no need !!
 
 add file / folder hierarchy - done
+add main background mesh design or smthg boxy 
