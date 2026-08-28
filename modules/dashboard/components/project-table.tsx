@@ -185,7 +185,7 @@ export default function ProjectTable({
       <div className="border rounded-lg overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow>
+            <TableRow className="select-none">
               <TableHead>Project</TableHead>
               <TableHead>Template</TableHead>
               <TableHead>Created</TableHead>
@@ -263,12 +263,12 @@ export default function ProjectTable({
                       >
                         {project.starMark[0]?.isMarked ? (
                           <>
-                            <StarIcon className="h-4 w-4 mr-2" />
+                            <StarIcon className="text-red-500 h-4 w-4 mr-2" />
                             Remove Favorite
                           </>
                         ) : (
                           <>
-                            <StarOffIcon className="h-4 w-4 mr-2" />
+                            <StarOffIcon className="text-gray-500 h-4 w-4 mr-2" />
                             Add to Favorite
                           </>
                         )}

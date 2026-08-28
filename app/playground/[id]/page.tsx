@@ -255,7 +255,7 @@ const MainPlaygroundPage = () => {
       setTemplateData,
       setOpenFiles,
     ],
-  );
+  ); // HANDLE SAVE
 
   const handleSaveAll = async () => {
     const unsavedFiles = openFiles.filter((f) => f.hasUnsavedChanges);
@@ -271,7 +271,7 @@ const MainPlaygroundPage = () => {
     } catch (error) {
       toast.error("Failed to save some files");
     }
-  };
+  }; // HANDLE SAVE ALL
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

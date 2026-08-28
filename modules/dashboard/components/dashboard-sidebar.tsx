@@ -80,7 +80,11 @@ export function DashboardSidebar({
 
   return (
     <>
-      <Sidebar variant="inset" collapsible="icon" className="border border-r">
+      <Sidebar
+        variant="inset"
+        collapsible="icon"
+        className="border border-r select-none"
+      >
         <SidebarHeader>
           <ThemeToggle />
           <div className="flex items-center gap-2 px-4 py-3 justify-center">
@@ -90,6 +94,7 @@ export function DashboardSidebar({
               height={60}
               width={60}
               className="rounded-xl"
+              draggable={false}
             />
           </div>
         </SidebarHeader>

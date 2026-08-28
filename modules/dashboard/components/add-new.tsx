@@ -73,6 +73,7 @@ const AddNewButton = () => {
             width={150}
             height={150}
             className="transition-transform duration-300 group-hover:scale-110"
+            draggable={false}
           />
         </div>
       </div>

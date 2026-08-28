@@ -40,6 +40,7 @@ const AddRepo = () => {
             width={150}
             height={150}
             className="w-37.5 h-37.5 transition-transform duration-300 group-hover:scale-110"
+            draggable={false}
           />
         </div>
       </div>

@@ -363,7 +363,7 @@ const WebContainerPreview = ({
 
           <ResizableHandle withHandle />
 
-          <ResizablePanel minSize={250}>
+          <ResizablePanel minSize={50} maxSize={450}>
             <div className="h-full w-full p-2">
               <TerminalComponent
                 ref={terminalRef}

@@ -8,11 +8,11 @@ import React, {
   forwardRef,
   useImperativeHandle,
 } from "react";
-import { Terminal } from "xterm";
-import { FitAddon } from "xterm-addon-fit";
-import { WebLinksAddon } from "xterm-addon-web-links";
-import { SearchAddon } from "xterm-addon-search";
-import "xterm/css/xterm.css";
+import { Terminal } from "@xterm/xterm";
+import { FitAddon } from "@xterm/addon-fit";
+import { WebLinksAddon } from "@xterm/addon-web-links";
+import { SearchAddon } from "@xterm/addon-search";
+import "@xterm/xterm/css/xterm.css";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Copy, Trash2, Download } from "lucide-react";
@@ -320,19 +320,20 @@ const TerminalComponent = forwardRef<TerminalRef, TerminalProps>(
       terminal.loadAddon(webLinksAddon);
       terminal.loadAddon(searchAddonInstance);
 
-      terminal.open(terminalRef.current);
-
       fitAddon.current = fitAddonInstance;
       searchAddon.current = searchAddonInstance;
       term.current = terminal;
+
+      terminal.open(terminalRef.current);
 
       // Handle terminal input
       terminal.onData(handleTerminalInput);
 
       // Initial fit
-      setTimeout(() => {
-        fitAddonInstance.fit();
-      }, 100);
+
+      // setTimeout(() => {
+      //   fitAddonInstance.fit();
+      // }, 100);
 
       // Welcome message
       terminal.writeln("🚀 WebContainer Terminal");
@@ -409,31 +410,75 @@ const TerminalComponent = forwardRef<TerminalRef, TerminalProps>(
     useEffect(() => {
       initializeTerminal();
 
-      // Handle resize
-      const resizeObserver = new ResizeObserver(() => {
-        if (fitAddon.current) {
-          setTimeout(() => {
-            fitAddon.current?.fit();
-          }, 100);
+      const element = terminalRef.current;
+      const fit = fitAddon.current;
+
+      if (!element || !fit) return;
+
+      let disposed = false;
+      let fitTimeout: ReturnType<typeof setTimeout> | null = null;
+
+      const safeFit = () => {
+        if (disposed) return;
+        if (!term.current) return;
+        if (!fitAddon.current) return;
+
+        // Element must have an actual size
+        if (element.clientWidth === 0 || element.clientHeight === 0) return;
+
+        try {
+          fitAddon.current.fit();
+        } catch (error) {
+          console.error("Terminal fit error:", error);
         }
+      };
+
+      // Initial fit
+      fitTimeout = setTimeout(() => {
+        safeFit();
+      }, 100);
+
+      const resizeObserver = new ResizeObserver(() => {
+        if (disposed) return;
+
+        if (fitTimeout) {
+          clearTimeout(fitTimeout);
+        }
+
+        fitTimeout = setTimeout(() => {
+          safeFit();
+        }, 50);
       });
 
-      if (terminalRef.current) {
-        resizeObserver.observe(terminalRef.current);
-      }
+      resizeObserver.observe(element);
 
       return () => {
+        disposed = true;
+
+        if (fitTimeout) {
+          clearTimeout(fitTimeout);
+          fitTimeout = null;
+        }
+
         resizeObserver.disconnect();
+
         if (currentProcess.current) {
           currentProcess.current.kill();
+          currentProcess.current = null;
         }
+
         if (shellProcess.current) {
           shellProcess.current.kill();
+          shellProcess.current = null;
         }
+
         if (term.current) {
           term.current.dispose();
           term.current = null;
         }
+
+        fitAddon.current = null;
+        searchAddon.current = null;
       };
     }, [initializeTerminal]);
 

@@ -1,16 +1,31 @@
 { PLAYGROUND }
 
 after installing dependencies the downloaded dependencies should register in package.json
+current session storage in web local storage ( if possible ) ( loading bar irritates )
+
+after opening any file then zooming in / out in ( file explorer ) the ( save / save all ) ui glitches
+
+add file / folder hierarchy
+basic inline suggestions 
+
+
+// IMP -- Only a single WebContainer instance can be booted ( fix this next error )
+          after closing preview and re-opening, the loading screen is stuck at Starting development server 
+          ( Reconnecting to the existing WebContainer session...) - after reloading the window its working but it restarts the while server and starts to reinstall dependencies
+         
 
 
 { DASHBOARD }
 
 add svg / logos
 implement ' see all playgound ' func
+open github repo 
+
+copy url icon fix
 
 { MAIN PAGE } 
 
-add main background mesh design or smthg boxy
+add main background mesh design or smthg boxy -- // todo 28 
 
 
 {  TERMINAL  }
@@ -27,3 +42,9 @@ fixed project not registering on sidebar after project creation
 
 termianl resize done
 added go back btn in playground
+
+fav button color fixed
+Cannot read properties of undefined (reading 'dimensions') - fixed
+
+minor text selection / img draggable fix
+
