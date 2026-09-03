@@ -27,6 +27,7 @@ interface WebContainerPreviewProps {
   writeFileSync: (path: string, content: string) => Promise<void>;
   forceResetup?: boolean; // Optional prop to force re-setup
 }
+
 const WebContainerPreview = ({
   templateData,
   error,

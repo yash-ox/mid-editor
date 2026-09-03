@@ -210,13 +210,14 @@ const MainPlaygroundPage = () => {
         );
 
         // Sync with WebContainer
-        if (writeFileSync) {
-          await writeFileSync(filePath, fileToSave.content);
-          lastSyncedContent.current.set(fileToSave.id, fileToSave.content);
-          if (instance && instance.fs) {
-            await instance.fs.writeFile(filePath, fileToSave.content);
-          }
+        if (!instance?.fs) {
+          toast.error("WebContainer instance is not available.");
+          return;
         }
+
+        await instance.fs.writeFile(filePath, fileToSave.content);
+
+        lastSyncedContent.current.set(fileToSave.id, fileToSave.content);
 
         const newTemplateData = await saveTemplateData(updatedTemplateData);
         setTemplateData(newTemplateData ?? updatedTemplateData);
@@ -255,6 +256,17 @@ const MainPlaygroundPage = () => {
     ],
   ); // HANDLE SAVE
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === "s") {
+        e.preventDefault();
+        handleSave();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleSave]);
+
   const handleSaveAll = async () => {
     const unsavedFiles = openFiles.filter((f) => f.hasUnsavedChanges);
 
@@ -273,14 +285,15 @@ const MainPlaygroundPage = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key === "s") {
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "s") {
         e.preventDefault();
-        handleSave();
+        e.stopPropagation();
+        handleSaveAll();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleSave]);
+  }, [handleSaveAll]);
 
   if (error) {
     return (
@@ -378,7 +391,7 @@ const MainPlaygroundPage = () => {
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => handleSave}
+                          onClick={() => handleSave()}
                           disabled={
                             !activeFile || !activeFile.hasUnsavedChanges
                           }
@@ -398,7 +411,7 @@ const MainPlaygroundPage = () => {
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={handleSaveAll}
+                          onClick={() => handleSaveAll()}
                           disabled={!hasUnsavedChanges}
                         >
                           <Save className="h-4 w-4" />

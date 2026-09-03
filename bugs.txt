@@ -1,13 +1,10 @@
 -- { PLAYGROUND }
 
-after installing dependencies the downloaded dependencies should register in package.json
-
-after opening any file then zooming in / out in ( file explorer ) the ( save / save all ) ui glitches
-
 basic inline suggestions 
 
+set up better loading screen ( loader.tsx )
 
-// IMP -- Only a single WebContainer instance can be booted ( fix this next error ) -- not sure if its even there or not 
+// Only a single WebContainer instance can be booted ( fix this next error ) -- not sure if its even there or not 
           
          
 
@@ -26,6 +23,10 @@ add better add-new.svg ( select template svg )
 -- { MAIN PAGE } 
 
 
+
+-- { SIGN-IN PAGE }
+
+add more ss 
 
 
 -- {  TERMINAL  }
@@ -59,3 +60,8 @@ add main background mesh design or smthg boxy
 added ui changes to sign-in page
 
 watch chatGpt chat and add theme related svg manipulation - done
+
+after installing dependencies the downloaded dependencies should register in package.json - implemented
+
+after opening any file then zooming in / out in ( file explorer ) the ( save / save all ) ui glitches - for now no issue is there related to this
+fixed save all shortcut key not working 

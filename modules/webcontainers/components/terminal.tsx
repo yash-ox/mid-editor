@@ -17,6 +17,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Copy, Trash2, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  TemplateFile,
+  TemplateFolder,
+} from "@/modules/playground/libs/path-to-json";
+import { useFileExplorer } from "@/modules/playground/hooks/useFileExplorer";
+import { generateFileId } from "@/modules/playground/libs";
 
 interface TerminalProps {
   webcontainerUrl?: string;
@@ -31,6 +37,28 @@ export interface TerminalRef {
   clearTerminal: () => void;
   focusTerminal: () => void;
 }
+
+const findFile = (
+  folder: TemplateFolder,
+  filename: string,
+): TemplateFile | null => {
+  for (const item of folder.items) {
+    if (
+      "filename" in item &&
+      `${item.filename}.${item.fileExtension}` === filename
+    ) {
+      return item;
+    }
+
+    if ("folderName" in item) {
+      const found = findFile(item, filename);
+
+      if (found) return found;
+    }
+  }
+
+  return null;
+};
 
 const TerminalComponent = forwardRef<TerminalRef, TerminalProps>(
   (
@@ -191,6 +219,38 @@ const TerminalComponent = forwardRef<TerminalRef, TerminalProps>(
           // Wait for process to complete
           const exitCode = await process.exit;
           currentProcess.current = null;
+
+          if (
+            cmd === "npm" &&
+            (args[0] === "install" ||
+              args[0] === "i" ||
+              args[0] === "uninstall")
+          ) {
+            try {
+              const packageJson = await webContainerInstance.fs.readFile(
+                "package.json",
+                "utf-8",
+              );
+
+              console.log("Updated package.json:", packageJson);
+
+              const templateData = useFileExplorer.getState().templateData;
+
+              if (templateData) {
+                const packageJsonFile = findFile(templateData, "package.json");
+
+                if (packageJsonFile) {
+                  const fileId = generateFileId(packageJsonFile, templateData);
+
+                  useFileExplorer
+                    .getState()
+                    .updateFileContent(fileId, packageJson);
+                }
+              }
+            } catch (error) {
+              console.error("Failed to sync package.json:", error);
+            }
+          }
 
           // Show new prompt
           writePrompt();

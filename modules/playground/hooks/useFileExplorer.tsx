@@ -52,11 +52,13 @@ interface FileExplorerState {
     parentPath: string,
     saveTemplateData: (data: TemplateFolder) => Promise<void>,
   ) => Promise<void>;
+
   handleDeleteFolder: (
     folder: TemplateFolder,
     parentPath: string,
     saveTemplateData: (data: TemplateFolder) => Promise<void>,
   ) => Promise<void>;
+
   handleRenameFile: (
     file: TemplateFile,
     newFilename: string,
@@ -64,10 +66,12 @@ interface FileExplorerState {
     parentPath: string,
     saveTemplateData: (data: TemplateFolder) => Promise<void>,
   ) => Promise<void>;
+
   handleRenameFolder: (
     folder: TemplateFolder,
     newFolderName: string,
     parentPath: string,
+
     saveTemplateData: (data: TemplateFolder) => Promise<void>,
   ) => Promise<void>;
 
@@ -477,8 +481,9 @@ export const useFileExplorer = create<FileExplorerState>((set, get) => ({
   },
 
   updateFileContent: (fileId, content) => {
-    set((state) => ({
-      openFiles: state.openFiles.map((file) =>
+    set((state) => {
+      // Update the currently open file
+      const updatedOpenFiles = state.openFiles.map((file) =>
         file.id === fileId
           ? {
               ...file,
@@ -486,9 +491,53 @@ export const useFileExplorer = create<FileExplorerState>((set, get) => ({
               hasUnsavedChanges: content !== file.originalContent,
             }
           : file,
-      ),
-      editorContent:
-        fileId === state.activeFileId ? content : state.editorContent,
-    }));
+      );
+
+      // Update templateData as well
+      if (!state.templateData) {
+        return {
+          openFiles: updatedOpenFiles,
+          editorContent:
+            fileId === state.activeFileId ? content : state.editorContent,
+        };
+      }
+
+      const updatedTemplateData = JSON.parse(
+        JSON.stringify(state.templateData),
+      ) as TemplateFolder;
+
+      const updateRecursive = (folder: TemplateFolder) => {
+        folder.items = folder.items.map((item) => {
+          if ("filename" in item) {
+            const itemId = generateFileId(item, state.templateData!);
+
+            if (itemId === fileId) {
+              return {
+                ...item,
+                content,
+              };
+            }
+
+            return item;
+          }
+
+          if ("folderName" in item) {
+            updateRecursive(item);
+            return item;
+          }
+
+          return item;
+        });
+      };
+
+      updateRecursive(updatedTemplateData);
+
+      return {
+        templateData: updatedTemplateData,
+        openFiles: updatedOpenFiles,
+        editorContent:
+          fileId === state.activeFileId ? content : state.editorContent,
+      };
+    });
   },
 }));
