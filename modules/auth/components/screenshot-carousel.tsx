@@ -8,14 +8,14 @@ const screenshots = [
     src: "/screenshots/home.svg",
     alt: "Home page",
   },
-  //   {
-  //     src: "/screenshots/editor.png",
-  //     alt: "Code editor",
-  //   },
-  //   {
-  //     src: "/screenshots/dashboard.png",
-  //     alt: "Dashboard",
-  //   },
+  // {
+  //   src: "/screenshots/editor.png",
+  //   alt: "Code editor",
+  // },
+  // {
+  //   src: "/screenshots/dashboard.png",
+  //   alt: "Dashboard",
+  // },
 ];
 
 export default function ScreenshotCarousel() {
@@ -38,6 +38,7 @@ export default function ScreenshotCarousel() {
           width={1200}
           height={700}
           className="block w-full h-auto"
+          loading="eager"
           draggable={false}
         />
       </div>

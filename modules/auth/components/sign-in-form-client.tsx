@@ -25,11 +25,11 @@ async function handleGithubSignIn() {
 
 const SignInFormClient = () => {
   return (
-    <main className="min-h-screen bg-[#252629] text-white">
-      <div className="mx-auto flex min-h-screen max-w-7xl">
+    <main className="w-full min-h-screen bg-[#252629] text-white">
+      <div className="mx-auto flex min-h-screen">
         {/* ================= LEFT ================= */}
 
-        <section className="flex w-full items-center justify-center px-6 py-12 lg:w-[25%]">
+        <section className="flex w-full items-center justify-center px-6 py-12 lg:w-[30%]">
           <div className="w-full max-w-105">
             {/* Logo / Illustration */}
 
@@ -40,7 +40,7 @@ const SignInFormClient = () => {
                 width={300}
                 height={300}
                 loading="eager"
-                className="h-55 w-55"
+                className="h-55 w-55 scale-x-[-1] "
                 draggable={false}
               />
             </div>
@@ -112,15 +112,19 @@ const SignInFormClient = () => {
         </section>
 
         {/* ================= DIVIDER ================= */}
+
         <div className="hidden w-px bg-white/6 lg:block" />
 
         {/* ================= RIGHT ================= */}
+
         <section className="relative hidden flex-1 items-center justify-center overflow-hidden px-10 py-12 lg:flex">
           {/* Background glow */}
+
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-150 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple blur-3xl" />
 
           <div className="relative z-10 w-full max-w-175">
             {/* Heading */}
+
             <div className="mb-8 text-center">
               <div className="mb-3 inline-flex rounded-full border border-white/10 bg-white/3 px-3 py-1 text-xs text-gray-400">
                 ✦ Built for developers
@@ -137,6 +141,7 @@ const SignInFormClient = () => {
             </div>
 
             {/* Screenshot */}
+
             <div className="rounded-2xl border border-white/10 bg-[#111111] p-2 shadow-2xl shadow-black/40">
               <div className="overflow-hidden rounded-xl">
                 <ScreenshotCarousel />
@@ -144,6 +149,7 @@ const SignInFormClient = () => {
             </div>
 
             {/* Feature indicators */}
+
             <div className="mt-6 flex justify-center gap-8 text-xs text-gray-500">
               <span>⌘ Browser IDE</span>
               <span>•</span>

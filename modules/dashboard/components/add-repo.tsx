@@ -35,11 +35,20 @@ const AddRepo = () => {
 
         <div className="relative overflow-hidden">
           <Image
-            src={"/github.svg"}
-            alt="Open GitHub repository"
+            src="/github-dark.svg"
+            alt="Github Logo"
             width={150}
             height={150}
-            className="w-37.5 h-37.5 transition-transform duration-300 group-hover:scale-110"
+            className="w-37.5 h-37.5 transition-transform duration-300 block dark:hidden"
+            draggable={false}
+          />
+
+          <Image
+            src="/github-light.svg"
+            alt="Github Logo"
+            width={150}
+            height={150}
+            className="w-37.5 h-37.5 transition-transform duration-300 hidden dark:block"
             draggable={false}
           />
         </div>

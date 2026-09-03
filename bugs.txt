@@ -19,6 +19,9 @@ open github repo
 
 copy url icon fix
 
+add draggable false in template selection
+add better add-new.svg ( select template svg )
+
 
 -- { MAIN PAGE } 
 
@@ -54,3 +57,5 @@ add file / folder hierarchy - done
 add main background mesh design or smthg boxy 
 
 added ui changes to sign-in page
+
+watch chatGpt chat and add theme related svg manipulation - done
