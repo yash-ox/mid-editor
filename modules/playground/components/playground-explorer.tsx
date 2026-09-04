@@ -47,6 +47,7 @@ import { DeleteDialog } from "./dialogs/delete-dialog";
 import { TemplateFile, TemplateFolder } from "../libs/path-to-json";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 type TemplateItem = TemplateFile | TemplateFolder;
 
@@ -159,15 +160,30 @@ export function TemplateFileTree({
 
   return (
     <Sidebar>
-      <Button
-        className="bg-gray-700 text-amber-50"
-        onClick={() => {
-          router.push("/dashboard");
-        }}
-      >
-        Go back
-      </Button>
-      <SidebarContent>
+      <div className="ml-3.5 flex justify-center select-none mt-3">
+        <ThemeToggle />
+
+        {/* Dark mode */}
+        <Button
+          className="bg-gray border-gray-600 hover:bg-gray-800 text-amber-50 ml-[50%] px-[10%] hidden dark:block"
+          onClick={() => {
+            router.push("/dashboard");
+          }}
+        >
+          Go back
+        </Button>
+
+        {/* Light mode */}
+        <Button
+          className="bg-gray border-gray-100 shadow-gray-600 shadow-2xs hover:bg-gray-200 text-gray-800 ml-[50%] px-[10%] dark:hidden"
+          onClick={() => {
+            router.push("/dashboard");
+          }}
+        >
+          Go back
+        </Button>
+      </div>
+      <SidebarContent className="select-none">
         <SidebarGroup>
           <SidebarGroupLabel>{title}</SidebarGroupLabel>
           <DropdownMenu>

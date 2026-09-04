@@ -34,8 +34,9 @@ const AddRepo = () => {
         </div>
 
         <div className="relative overflow-hidden">
+          {/* Light mode */}
           <Image
-            src="/github-dark.svg"
+            src="/github-dark-light.svg"
             alt="Github Logo"
             width={150}
             height={150}
@@ -43,6 +44,7 @@ const AddRepo = () => {
             draggable={false}
           />
 
+          {/* Dark mode */}
           <Image
             src="/github-light.svg"
             alt="Github Logo"

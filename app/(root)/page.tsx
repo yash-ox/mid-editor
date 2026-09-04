@@ -11,28 +11,46 @@ export default function Home() {
         <Image
           src={"/hero.svg"}
           alt="Hero-Section"
-          height={600}
+          height={500}
           width={400}
-          className="w-100"
+          className="h-50 w-100"
           draggable={false}
         />
 
-        <h1 className=" z-20 text-6xl mt-5 font-extrabold text-center bg-clip-text text-transparent bg-linear-to-r from-rose-500 via-red-500 to-pink-500 dark:from-rose-400 dark:via-red-400 dark:to-pink-400 tracking-tight leading-[1.3] ">
+        <h1 className=" z-20 text-6xl mt-5 font-extrabold text-center bg-clip-text text-transparent bg-linear-to-r from-[#5148c7] to-[#302a85] ">
           Mid Editur
         </h1>
       </div>
 
-      <p className="mt-2 text-lg text-center text-gray-600 dark:text-gray-400 px-5 py-10 max-w-2xl">
-        Dis editer that has a name dats MidEditer it name iz mid editur cuz its
-        mid, it aint like a editer like a vsCode so yea, its a midEditer. Me
-        made dis cuz i wan a job n me throw dis editer in ma resume n hope da
-        interviewer like dis editer n giv me a job.
+      <p className="pt-4 text-lg text-center text-gray-600 dark:text-gray-400 px-5 py-10 max-w-2xl">
+        A powerful browser-based development environment that lets you write
+        code, install packages, run your projects, and see your changes
+        instantly — without leaving your browser.
       </p>
       <Link href={"/dashboard"}>
-        <Button variant={"brand"} className="mb-4 bg-gray-800" size={"lg"}>
-          Get Started
-          <ArrowUpRight className="w-3.5 h-3.5" />
-        </Button>
+        {/* Light mode */}
+        <div className="dark:hidden">
+          <Button
+            variant={"brand"}
+            className="mb-4 bg-[#5148c7] shadow-2xl shadow-gray-600 "
+            size={"lg"}
+          >
+            Get Started
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Button>
+        </div>
+
+        {/* Dark mode */}
+        <div className="hidden dark:block">
+          <Button
+            variant={"brand"}
+            className="mb-4 bg-[#5148c7] shadow-2xl shadow-gray-600 "
+            size={"lg"}
+          >
+            Get Started
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Button>
+        </div>
       </Link>
     </div>
   );

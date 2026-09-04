@@ -422,9 +422,9 @@ const MainPlaygroundPage = () => {
                   ></TooltipTrigger>
                   <TooltipContent>Save All (Ctrl + Shift + s)</TooltipContent>
                 </Tooltip>
-                <Button variant={"default"} size={"icon"}>
+                {/* <Button variant={"default"} size={"icon"}>
                   <Bot className="size-4" />
-                </Button>
+                </Button> */}
               </div>
             </div>
 
