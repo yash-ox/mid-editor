@@ -267,114 +267,117 @@ export const configureMonaco = (monaco: Monaco) => {
   });
 };
 
-export const defaultEditorOptions: editor.IStandaloneEditorConstructionOptions = {
-  // Font settings
-  fontSize: 14,
-  fontFamily:
-    "'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, 'Liberation Mono', Menlo, Courier, monospace",
-  fontLigatures: true,
-  fontWeight: "400",
+export const defaultEditorOptions: editor.IStandaloneEditorConstructionOptions =
+  {
+    // Font settings
+    fontSize: 14,
+    fontFamily:
+      "'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, 'Liberation Mono', Menlo, Courier, monospace",
+    fontLigatures: true,
+    fontWeight: "400",
 
-  // Layout
-  minimap: {
-    enabled: true,
-    size: "proportional",
-    showSlider: "mouseover",
-  },
-  scrollBeyondLastLine: false,
-  automaticLayout: true,
-  padding: { top: 16, bottom: 16 },
+    // Layout
+    minimap: {
+      enabled: true,
+      size: "proportional",
+      showSlider: "mouseover",
+    },
+    scrollBeyondLastLine: false,
+    automaticLayout: true,
+    padding: { top: 16, bottom: 16 },
 
-  // Line settings
-  lineNumbers: "on",
-  lineHeight: 20,
-  renderLineHighlight: "all",
-  renderWhitespace: "selection",
+    // Line settings
+    lineNumbers: "on",
+    lineHeight: 20,
+    renderLineHighlight: "all",
+    renderWhitespace: "selection",
 
-  // Indentation
-  tabSize: 2,
-  insertSpaces: true,
-  detectIndentation: true,
+    // Indentation
+    tabSize: 2,
+    insertSpaces: true,
+    detectIndentation: true,
 
-  // Word wrapping
-  wordWrap: "on",
-  wordWrapColumn: 120,
-  wrappingIndent: "indent",
+    // Word wrapping
+    wordWrap: "on",
+    wordWrapColumn: 120,
+    wrappingIndent: "indent",
 
-  // Code folding
-  folding: true,
-  foldingHighlight: true,
-  foldingStrategy: "indentation",
-  showFoldingControls: "mouseover",
+    // Code folding
+    folding: true,
+    foldingHighlight: true,
+    foldingStrategy: "indentation",
+    showFoldingControls: "mouseover",
 
-  // Scrolling
-  smoothScrolling: true,
-  mouseWheelZoom: true,
-  fastScrollSensitivity: 5,
+    // Scrolling
+    smoothScrolling: true,
+    mouseWheelZoom: true,
+    fastScrollSensitivity: 5,
 
-  // Selection
-  multiCursorModifier: "ctrlCmd",
-  selectionHighlight: true,
-  occurrencesHighlight: true,
+    // Selection
+    multiCursorModifier: "ctrlCmd",
+    selectionHighlight: true,
+    occurrencesHighlight: "multiFile",
 
-  // Suggestions
-  suggestOnTriggerCharacters: true,
-  acceptSuggestionOnEnter: "on",
-  tabCompletion: "on",
-  wordBasedSuggestions: true,
-  quickSuggestions: {
-    other: true,
-    comments: false,
-    strings: false,
-  },
+    // Suggestions
+    suggestOnTriggerCharacters: true,
+    acceptSuggestionOnEnter: "on",
+    tabCompletion: "on",
+    wordBasedSuggestions: "allDocuments",
+    quickSuggestions: {
+      other: true,
+      comments: false,
+      strings: false,
+    },
 
-  // Formatting
-  formatOnPaste: true,
-  formatOnType: true,
+    // Formatting
+    formatOnPaste: true,
+    formatOnType: true,
 
-  // Bracket matching
-  matchBrackets: "always",
-  bracketPairColorization: {
-    enabled: true,
-  },
+    // Bracket matching
+    matchBrackets: "always",
+    bracketPairColorization: {
+      enabled: true,
+    },
 
-  // Guides
-  renderIndentGuides: true,
-  highlightActiveIndentGuide: true,
-  rulers: [80, 120],
+    // Guides
+    guides: {
+      indentation: true,
+      highlightActiveIndentation: true,
+    },
+    rulers: [80, 120],
 
-  // Performance
-  disableLayerHinting: false,
-  disableMonospaceOptimizations: false,
+    // Performance
+    disableLayerHinting: false,
+    disableMonospaceOptimizations: false,
 
-  // Accessibility
-  accessibilitySupport: "auto",
+    // Accessibility
+    accessibilitySupport: "auto",
 
-  // Cursor
-  cursorBlinking: "smooth",
-  cursorSmoothCaretAnimation: true,
-  cursorStyle: "line",
-  cursorWidth: 2,
+    // Cursor
+    cursorBlinking: "smooth",
+    cursorSmoothCaretAnimation: "on",
+    cursorStyle: "line",
+    cursorWidth: 2,
 
-  // Find
-  find: {
-    addExtraSpaceOnTop: false,
-    autoFindInSelection: "never",
-    seedSearchStringFromSelection: "always",
-  },
+    // Find
+    find: {
+      addExtraSpaceOnTop: false,
+      autoFindInSelection: "never",
+      seedSearchStringFromSelection: "always",
+    },
 
-  // Hover
-  hover: {
-    enabled: true,
-    delay: 300,
-    sticky: true,
-  },
+    // Hover
+    hover: {
+      enabled: "on",
+      delay: 300,
+      sticky: true,
+    },
 
-  // Semantic highlighting
-  "semanticHighlighting.enabled": true,
+    // Semantic highlighting
+    "semanticHighlighting.enabled": true,
 
-  // Sticky scroll
-  stickyScroll: {
-    enabled: true,
-  },
-};
+    // Sticky scroll
+    stickyScroll: {
+      enabled: true,
+    },
+  };
