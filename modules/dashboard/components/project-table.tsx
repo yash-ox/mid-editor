@@ -210,12 +210,43 @@ export default function ProjectTable({
                   </div>
                 </TableCell>
                 <TableCell>
-                  <Badge
-                    variant="outline"
-                    className="bg-[#E93F3F15] text-[#E93F3F] border-[#E93F3F]"
-                  >
-                    {project.template}
-                  </Badge>
+                  {/* Light mode */}
+                  <div className="dark:hidden">
+                    <Badge
+                      variant="outline"
+                      className="bg-[#302a8516] text-[#2c47dec9] border-[#000000] "
+                    >
+                      {/* <Image
+                        src={`/${project.template.toLowerCase()}.svg`}
+                        alt={`${project.template.toLowerCase()}`}
+                        height={5}
+                        width={5}
+                        className=""
+                        loading="eager"
+                        draggable={false}
+                      /> */}
+                      {project.template}
+                    </Badge>
+                  </div>
+
+                  {/* Dark mode */}
+                  <div className="hidden dark:flex">
+                    <Badge
+                      variant="outline"
+                      className="bg-[#302a8545] text-[#2c47dec9] border-[#ffffff] "
+                    >
+                      {/* <Image
+                        src={`/${project.template.toLowerCase()}.svg`}
+                        alt={`${project.template.toLowerCase()}`}
+                        height={5}
+                        width={5}
+                        className="pr-[15%]"
+                        loading="eager"
+                        draggable={false}
+                      /> */}
+                      {project.template}
+                    </Badge>
+                  </div>
                 </TableCell>
                 <TableCell>
                   <span className="text-sm text-gray-500">

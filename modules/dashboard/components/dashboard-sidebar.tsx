@@ -88,14 +88,16 @@ export function DashboardSidebar({
         <SidebarHeader>
           <ThemeToggle />
           <div className="flex items-center gap-2 px-4 py-3 justify-center">
-            <Image
-              src={"/logo.svg"}
-              alt="logo"
-              height={60}
-              width={60}
-              className="rounded-xl"
-              draggable={false}
-            />
+            <Link href={"/"}>
+              <Image
+                src={"/logo-new.svg"}
+                alt="logo"
+                height={60}
+                width={60}
+                className="rounded-xl"
+                draggable={false}
+              />
+            </Link>
           </div>
         </SidebarHeader>
         <SidebarContent>
@@ -200,7 +202,7 @@ export function DashboardSidebar({
                         </SidebarMenuItem>
                       );
                     })}
-                <SidebarMenuItem>
+                {/* <SidebarMenuItem>
                   <SidebarMenuButton
                     render={<Link href="/playgrounds" />}
                     tooltip="View all"
@@ -209,14 +211,14 @@ export function DashboardSidebar({
                       View all playgrounds
                     </span>
                   </SidebarMenuButton>
-                </SidebarMenuItem>
+                </SidebarMenuItem> */}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
           <SidebarMenu>
-            <SidebarMenuItem>
+            {/* <SidebarMenuItem>
               <SidebarMenuButton
                 render={<Link href="/settings" />}
                 tooltip="Settings"
@@ -224,7 +226,7 @@ export function DashboardSidebar({
                 <Settings className="h-4 w-4" />
                 <span>Settings</span>
               </SidebarMenuButton>
-            </SidebarMenuItem>
+            </SidebarMenuItem> */}
           </SidebarMenu>
         </SidebarFooter>
         <SidebarRail />

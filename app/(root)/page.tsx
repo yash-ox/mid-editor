@@ -11,21 +11,22 @@ export default function Home() {
         <Image
           src={"/hero.svg"}
           alt="Hero-Section"
-          height={500}
+          height={50}
           width={400}
-          className="h-50 w-100"
+          className="w-100 h-auto"
+          loading="eager"
           draggable={false}
         />
 
         <h1 className=" z-20 text-6xl mt-5 font-extrabold text-center bg-clip-text text-transparent bg-linear-to-r from-[#5148c7] to-[#302a85] ">
-          Mid Editur
+          Mid Editor
         </h1>
       </div>
 
       <p className="pt-4 text-lg text-center text-gray-600 dark:text-gray-400 px-5 py-10 max-w-2xl">
-        A powerful browser-based development environment that lets you write
-        code, install packages, run your projects, and see your changes
-        instantly — without leaving your browser.
+        A browser-based development environment that lets you write code,
+        install packages, run your projects, and see your changes instantly —
+        without leaving your browser.
       </p>
       <Link href={"/dashboard"}>
         {/* Light mode */}

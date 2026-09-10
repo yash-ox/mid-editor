@@ -4,7 +4,9 @@ set up better loading screen ( loader.tsx ) - for now changed colour to grey-600
 
 // Only a single WebContainer instance can be booted ( fix this next error ) -- not sure if its even there or not 
           
-         
+Failed to initialize WebContainer:  Error: Only a single WebContainer instance can be booted
+    at WebContainer.boot (file://C:/Users/ys285/Downloads/L tes/mid-editor/.next/dev/static/chunks/node_modules_00_2qu1._.js:13107:19)
+    at async initializeWebContainer (file://C:/Users/ys285/Downloads/L tes/mid-editor/.next/dev/static/chunks/_0f0nddy._.js:4536:50) (file://C:/Users/ys285/Downloads/L tes/mid-editor/.next/dev/static/chunks/_0f0nddy._.js:4552:29)
 
 -- { DASHBOARD }
 
@@ -19,6 +21,8 @@ add better add-new.svg ( select template svg )
 
 change red colour to match with homepage
 change add-new.svg
+
+-- TODO - remove box shadow on add-new and github
 
 
 -- { MAIN PAGE } 
