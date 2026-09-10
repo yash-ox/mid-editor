@@ -87,7 +87,9 @@ const MainPlaygroundPage = () => {
 
   useEffect(() => {
     setPlaygroundId(id);
-  }, [id, setPlaygroundId]);
+    setTemplateData(null);
+    closeAllFiles();
+  }, [id, closeAllFiles, setPlaygroundId, setTemplateData]);
 
   useEffect(() => {
     if (templateData && !openFiles.length) {

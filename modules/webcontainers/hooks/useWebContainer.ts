@@ -2,6 +2,34 @@ import { useState, useEffect, useCallback, useRef } from "react";
 
 import { WebContainer } from "@webcontainer/api";
 
+let sharedInstance: WebContainer | null = null;
+let bootPromise: Promise<WebContainer> | null = null;
+let activeConsumers = 0;
+
+const bootWebContainer = async (): Promise<WebContainer> => {
+  if (sharedInstance) return sharedInstance;
+
+  if (!bootPromise) {
+    bootPromise = WebContainer.boot().then((webContainerInstance) => {
+      sharedInstance = webContainerInstance;
+      bootPromise = null;
+      return webContainerInstance;
+    });
+  }
+
+  return bootPromise;
+};
+
+const releaseWebContainer = () => {
+  activeConsumers -= 1;
+
+  if (activeConsumers > 0 || !sharedInstance) return;
+
+  const webContainerInstance = sharedInstance;
+  sharedInstance = null;
+  webContainerInstance.teardown();
+};
+
 interface UseWebContainerReturn {
   serverUrl: string | null;
   isLoading: boolean;
@@ -21,10 +49,19 @@ export const useWebContainer = (): UseWebContainerReturn => {
 
   useEffect(() => {
     let mounted = true;
+    let released = false;
+    activeConsumers += 1;
+
+    const release = () => {
+      if (released) return;
+
+      released = true;
+      releaseWebContainer();
+    };
 
     async function initializeWebContainer() {
       try {
-        const webContainerInstance = await WebContainer.boot();
+        const webContainerInstance = await bootWebContainer();
 
         webContainerInstance.on("server-ready", (port, url) => {
           console.log("Server ready:", url);
@@ -35,10 +72,11 @@ export const useWebContainer = (): UseWebContainerReturn => {
         });
 
         if (!mounted) {
-          webContainerInstance.teardown();
+          release();
           return;
         }
 
+        instanceRef.current = webContainerInstance;
         setInstance(webContainerInstance);
         setIsLoading(false);
       } catch (error) {
@@ -60,8 +98,8 @@ export const useWebContainer = (): UseWebContainerReturn => {
 
     return () => {
       mounted = false;
-
-      // DON'T teardown here
+      instanceRef.current = null;
+      release();
     };
   }, []);
 

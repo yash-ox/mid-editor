@@ -160,7 +160,7 @@ export function TemplateFileTree({
 
   return (
     <Sidebar>
-      <div className="ml-3.5 flex justify-center select-none mt-3 mr-10">
+      <div className="ml-3.5 flex justify-center select-none mt-3 mr-2">
         <ThemeToggle />
 
         {/* Dark mode */}

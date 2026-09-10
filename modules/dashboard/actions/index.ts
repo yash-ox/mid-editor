@@ -96,11 +96,19 @@ export const createPlayground = async (data: {
 
 export const deletePlaygroundById = async (id: string) => {
   try {
-    await db.playground.delete({
-      where: {
-        id,
-      },
-    });
+    await db.$transaction([
+      db.templateFile.deleteMany({
+        where: {
+          playgroundId: id,
+        },
+      }),
+
+      db.playground.delete({
+        where: {
+          id,
+        },
+      }),
+    ]);
 
     revalidatePath("/dashboard");
   } catch (error) {
