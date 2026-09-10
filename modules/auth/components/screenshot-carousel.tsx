@@ -5,17 +5,17 @@ import { useEffect, useState } from "react";
 
 const screenshots = [
   {
-    src: "/screenshots/home.svg",
+    src: "/homepage.png",
     alt: "Home page",
   },
-  // {
-  //   src: "/screenshots/editor.png",
-  //   alt: "Code editor",
-  // },
-  // {
-  //   src: "/screenshots/dashboard.png",
-  //   alt: "Dashboard",
-  // },
+  {
+    src: "/dashboard.png",
+    alt: "Dashboard",
+  },
+  {
+    src: "/playground.png",
+    alt: "Playground",
+  },
 ];
 
 export default function ScreenshotCarousel() {
