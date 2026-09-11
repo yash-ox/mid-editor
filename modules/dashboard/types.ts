@@ -14,7 +14,6 @@ export interface Project {
   description: string;
   template: string;
   createdAt: Date;
-  updatedAt: Date;
   userId: string;
   user: User;
   starMark: { isMarked: boolean }[];
