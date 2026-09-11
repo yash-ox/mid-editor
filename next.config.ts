@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  outputFileTracingIncludes: {
+    "/api/template/**/*": ["./midEditor-starters/**/*"],
+  },
   async headers() {
     return [
       {
